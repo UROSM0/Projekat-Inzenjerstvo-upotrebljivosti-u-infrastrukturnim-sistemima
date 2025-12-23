@@ -1,0 +1,142 @@
+﻿<Application x:Class="NetworkService.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NetworkService"
+             xmlns:viewModel="clr-namespace:NetworkService.ViewModel"
+             xmlns:views="clr-namespace:NetworkService.Views"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <!-- PALETA -->
+        <SolidColorBrush x:Key="Clr.Bg"           Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="Clr.Surface"      Color="#F7F9FC"/>
+        <SolidColorBrush x:Key="Clr.Border"       Color="#D0D7E2"/>
+        <SolidColorBrush x:Key="Clr.Primary"      Color="#4DA3FF"/>
+        <SolidColorBrush x:Key="Clr.PrimaryMuted" Color="#357EDD"/>
+        <SolidColorBrush x:Key="Clr.Accent"       Color="#00C1A6"/>
+        <SolidColorBrush x:Key="Clr.Text"         Color="#202124"/>
+        <SolidColorBrush x:Key="Clr.SubText"      Color="#5F6368"/>
+        <SolidColorBrush x:Key="Clr.Error"        Color="#D93025"/>
+        <SolidColorBrush x:Key="Clr.RowAlt"       Color="#F1F4F9"/>
+        <SolidColorBrush x:Key="Clr.RowHover"     Color="#E9F3FF"/>
+        <SolidColorBrush x:Key="Clr.Select"       Color="#CCE4FF"/>
+
+        <!-- TIPOGRAFIJA -->
+        <Style x:Key="Txt.Title" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style x:Key="Txt.Label" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Clr.SubText}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,8,0,4"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+        </Style>
+
+        <!-- CARD -->
+        <Style x:Key="Card" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource Clr.Surface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+
+        <!-- INPUTI -->
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="CaretBrush" Value="{StaticResource Clr.Primary}"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="4,2"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+            <Setter Property="Margin" Value="6,0,0,0"/>
+        </Style>
+
+        <!-- BUTTON -->
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource Clr.Primary}"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.PrimaryMuted}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="6"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Clr.PrimaryMuted}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DATAGRID -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Text}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="{StaticResource Clr.RowAlt}"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="VerticalGridLinesBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="RowHeight" Value="36"/>
+            <Setter Property="ColumnHeaderHeight" Value="34"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="{StaticResource Clr.SubText}"/>
+            <Setter Property="Background" Value="{StaticResource Clr.Surface}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Clr.Border}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Clr.RowHover}"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="{StaticResource Clr.Select}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ERROR TEXT -->
+        <Style x:Key="Txt.Error" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource Clr.Error}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,2,0,0"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,3 @@
+0;R-01;RTD;/Resources/Images/rtd.png;
+1;R-02;TermoSprega;/Resources/Images/thermocouple.png;
+2;R-03;RTD;/Resources/Images/rtd.png;
